@@ -7,6 +7,11 @@ public class Ejercicio2 {
 	static boolean bool;
 	static int num;
 
+/**
+ * funcion que calcula si el jugador tiene posibilidades de ganar
+ * @param puntos int puntos de la clasificacion
+ * @return true si puntos >= else false
+ */
 	private static boolean ganar(int num) {
 		if (num >= 70) {
 			bool = true;
@@ -24,7 +29,7 @@ public class Ejercicio2 {
 
 		System.out.println("teclea los puntos obtenidos:");
 
-		num = sc.nextInt();
+		num = Integer.parseInt(sc.nextLine());
 
 		if (ganar(num)) {
 			System.out.println("Puedes ganar el Campeonato");
@@ -32,6 +37,7 @@ public class Ejercicio2 {
 		} else {
 			System.out.println("Ponte las pilas si quieres ganar");
 		}
+		sc.close();
 
 	}
 

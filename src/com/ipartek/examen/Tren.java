@@ -1,78 +1,98 @@
 package com.ipartek.examen;
 
 public class Tren {
-//atributos
+	
+	static final int CAPACIDAD_MAXIMA = 400;
+	static final int EDAD_MAXIMA = 40;
+	
 	private String tipo;
 	private String referencia;
 	private int asientosOcupados;
-	private int aniosActivo;
-
-//Constructor
-
-	public Tren(String tipo, String referencia, int asientosOcupados, int aniosActivo) {
+	private int anyosActivo;
+	
+	
+	public Tren(String tipo, String referencia, int asientosOcupados, int anyosActivo) {
 		super();
 		this.tipo = tipo;
 		this.referencia = referencia;
 		this.asientosOcupados = asientosOcupados;
-		this.aniosActivo = aniosActivo;
+		this.anyosActivo = anyosActivo;
 	}
 
-// metodos
-
-	public void trenLleno(int asientosOcupados) {
-		if (asientosOcupados > 400) {
-			System.out.println("Se han vendido màs billetes que plazas hay");
-		}
-
-	}
-
-	public void demasiadoViejo(int aniosActivo) {
-
-		if (aniosActivo >= 40) {
-			System.out.println("FUERA DE CICULACION");
-		} else {
-			System.out.println("EN CICULACION");
-		}
-	}
-
-//los getters y setters
 
 	public String getTipo() {
 		return tipo;
 	}
 
+
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
 
 	public String getReferencia() {
 		return referencia;
 	}
 
+
 	public void setReferencia(String referencia) {
 		this.referencia = referencia;
 	}
+
 
 	public int getAsientosOcupados() {
 		return asientosOcupados;
 	}
 
+
 	public void setAsientosOcupados(int asientosOcupados) {
 		this.asientosOcupados = asientosOcupados;
 	}
 
-	public int getAniosActivo() {
-		return aniosActivo;
+
+	public int getAnyosActivo() {
+		return anyosActivo;
 	}
 
-	public void setAniosActivo(int aniosActivo) {
-		this.aniosActivo = aniosActivo;
+
+	public void setAnyosActivo(int anyosActivo) {
+		this.anyosActivo = anyosActivo;
 	}
 
-	@Override
-	public String toString() {
+
+	
+	public String mostrarDatos() {
 		return "Tren [tipo=" + tipo + ", referencia=" + referencia + ", asientosOcupados=" + asientosOcupados
-				+ ", aniosActivo=" + aniosActivo + "]";
+				+ ", anyosActivo=" + anyosActivo + "]";
 	}
-
+	
+	/**
+	 * Lorem Ipsum
+	 * 
+	 * @see CAPACIDAD_MAXIMA
+	 * @return
+	 */
+	public boolean estaLleno() {
+		
+		boolean resul = false;
+		
+		if ( this.asientosOcupados >= CAPACIDAD_MAXIMA ) {
+			resul = true;
+		}
+		return resul;
+	}
+	
+	
+	
+	public boolean esViejo() {
+		
+		boolean resul = false;
+		
+		if ( this.anyosActivo >= EDAD_MAXIMA ) {
+			resul = true;
+		}
+		return resul;
+	}
+	
+	
 }

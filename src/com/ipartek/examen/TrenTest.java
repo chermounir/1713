@@ -2,34 +2,156 @@ package com.ipartek.examen;
 
 import static org.junit.Assert.*;
 
-import org.junit.Test;
+import org.junit.*;
+
+import jdk.nashorn.internal.ir.annotations.Ignore;
 
 public class TrenTest {
-
-	@Test
-	public void testTrenLleno() {
-		Tren tren = new Tren(null, null, 390, 0);
-		tren.trenLleno(tren.getAsientosOcupados());
-		
-		Tren tren1 = new Tren(null, null, 400, 0);
-		tren1.trenLleno(tren1.getAsientosOcupados());
-		
-		Tren tren2 = new Tren(null, null, 401, 0);
-		tren2.trenLleno(tren2.getAsientosOcupados());
-		
-
-	}
 	
-	@Test
-	public void testDemasiadoViejo() {
-		Tren tren3 = new Tren(null, null, 0, 39);
-		tren3.trenLleno(tren3.getAsientosOcupados());
-		
-		Tren tren4 = new Tren(null, null, 0, 40);
-		tren4.trenLleno(tren4.getAsientosOcupados());
-		
-		Tren tren5 = new Tren(null, null, 0, 41);
-		tren5.trenLleno(tren5.getAsientosOcupados());
+	Tren tren;
+	static final String TIPO = "Locomotora";
+	static final String REFERENCIA = "LOC-123";
+	static final int ASIENTOS_OCUPADOS = 5;
+	static final int ANYOS = 3;
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
 	}
 
-}
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		tren = new Tren(TIPO, REFERENCIA , ASIENTOS_OCUPADOS, ANYOS);
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		tren = null;
+	}
+
+	@Test
+	public void testTren() {
+
+		assertEquals( TIPO , tren.getTipo() );
+		assertEquals( REFERENCIA, tren.getReferencia() );
+		assertEquals( ASIENTOS_OCUPADOS, tren.getAsientosOcupados() );
+		assertEquals( ANYOS, tren.getAnyosActivo() );
+		
+		Tren tNull = new Tren( null, null, -5, 0);
+		assertEquals( null , tNull.getTipo() );
+		assertEquals( null, tNull.getReferencia() );
+		assertEquals( -5, tNull.getAsientosOcupados() );
+		assertEquals( 0, tNull.getAnyosActivo() );
+		
+	}
+
+	@Test
+	public void testGetTipo() {
+
+		assertEquals(TIPO, tren.getTipo() );
+		
+	}
+
+	@Test
+	public void testSetTipo() {
+		
+		tren.setTipo("algo");
+		assertEquals("algo", tren.getTipo() );
+		
+		tren.setTipo(null);
+		assertEquals(null, tren.getTipo() );
+		
+	}
+
+	@Test
+	public void testGetReferencia() {
+		
+		assertEquals( REFERENCIA, tren.getReferencia() );
+	}
+
+	@Test
+	public void testSetReferencia() {
+		
+		tren.setReferencia("algo");
+		assertEquals( "algo", tren.getReferencia() );
+		
+		tren.setReferencia(null);
+		assertEquals( null, tren.getReferencia() );
+		
+	}
+
+	@Test
+	public void testGetAsientosOcupados() {
+
+		assertEquals( ASIENTOS_OCUPADOS, tren.getAsientosOcupados() );
+		
+	}
+
+	@Test
+	public void testSetAsientosOcupados() {
+
+			tren.setAsientosOcupados(-1);
+			assertEquals( -1, tren.getAsientosOcupados() );
+			
+			
+			tren.setAsientosOcupados( (Tren.CAPACIDAD_MAXIMA+1) );
+			assertEquals( Tren.CAPACIDAD_MAXIMA+1 , tren.getAsientosOcupados() );
+			
+	}
+
+	@Test
+	public void testGetAnyosActivo() {
+
+		assertEquals(ANYOS, tren.getAnyosActivo());
+		
+	}
+
+	@Test
+	public void testSetAnyosActivo() {
+
+		tren.setAnyosActivo(-1);
+		assertEquals( -1 , tren.getAnyosActivo());
+		
+		tren.setAnyosActivo( (Tren.EDAD_MAXIMA+1) );
+		assertEquals( Tren.EDAD_MAXIMA+1 , tren.getAnyosActivo());
+				
+	}
+
+		
+	@Ignore
+	public void testMostrarDatos() {
+		
+	}
+
+	@Test
+	public void testEstaLleno() {
+
+
+			assertFalse( tren.estaLleno() );
+			
+			tren.setAsientosOcupados( Tren.CAPACIDAD_MAXIMA );
+			assertTrue( tren.estaLleno() );
+			
+			
+			tren.setAsientosOcupados( Tren.CAPACIDAD_MAXIMA+1 );
+			assertTrue( tren.estaLleno() );
+			
+		
+	}
+
+	@Test
+	public void testEsViejo() {
+
+		assertFalse( tren.esViejo() ); // 3 años
+		
+		tren.setAnyosActivo( 40 );
+		assertTrue( tren.esViejo() );
+		
+		tren.setAnyosActivo( 41 );
+		assertTrue( tren.esViejo() );
+		
+		
+	}}

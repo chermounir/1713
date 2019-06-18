@@ -5,7 +5,7 @@ public class Youtube {
 	public static final int LONGITUD_CODIGO = 11;
 	public static final int LONGITUD_MIN_TITULO = 2;
 	public static final int LONGITUD_MAX_TITULO = 150;
-	public static final String URL = "https://www.youtube.com/watch?v=VAx4oo3i87c";
+	public static final String URL = "https://www.youtube.com/watch?v=";
 
 	// propridades
 	private String titulo;// minimo 2 letras, maximo 1150
@@ -15,8 +15,8 @@ public class Youtube {
 	// constructores
 	public Youtube(String titulo, String codigo) throws Exception {
 		super();/*
-		this.titulo = titulo;
-		this.codigo = codigo;*/
+				 * this.titulo = titulo; this.codigo = codigo;
+				 */
 		this.setCodigo(codigo);
 		this.setTitulo(titulo);
 		this.reproducciones = 0;
@@ -27,15 +27,22 @@ public class Youtube {
 		return titulo;
 	}
 
+	/**
+	 * cambia tetulo
+	 * 
+	 * @param titulo Strin nuevo titulo
+	 * @throws Exception si titulo null || >= LONGITUD_MIN_TITULO || <=
+	 *                   LONGITUD_MAX_TITULO
+	 */
 	public void setTitulo(String titulo) throws Exception {
 
 		if (titulo != null && titulo.length() >= LONGITUD_MIN_TITULO && titulo.length() <= LONGITUD_MAX_TITULO) {
 			this.titulo = titulo;
-		}else {
-			String msg=String.format("Titulo debe ser entre %i y %i ", LONGITUD_MIN_TITULO,LONGITUD_MAX_TITULO);
-	throw new Exception(msg);
+		} else {
+			String msg = String.format("Titulo debe ser entre %i y %i ", LONGITUD_MIN_TITULO, LONGITUD_MAX_TITULO);
+			throw new Exception(msg);
 		}
-		
+
 	}
 
 	public String getCodigo() {

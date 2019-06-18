@@ -2,32 +2,27 @@ package com.ipartek.examen;
 
 import java.util.Scanner;
 
-public class Ejercicio4 extends Tren {
+public class Ejercicio4 {
+	
 
-	public Ejercicio4(String tipo, String referencia, int asientosOcupados, int aniosActivo) {
-		super(tipo, referencia, asientosOcupados, aniosActivo);
-
-	}
 
 	public static void main(String[] args) {
 
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Introduce el Tipo: ");
-		String tipo = sc.nextLine();
-		System.out.println("Introduce la Referencia: ");
-		String referencia = sc.nextLine();
-		System.out.println("Introduce los AsientosOcupados: ");
-		int asientosOcupados = sc.nextInt();
-		System.out.println("Introduce los AñosActivo: ");
-		int aniosActivo = sc.nextInt();
+		Tren t1 = new Tren("Locomotora", "LOC123", 400, 6);
+		
+		System.out.println( t1.mostrarDatos() );
 
-		Tren tren = new Tren(tipo, referencia, asientosOcupados, aniosActivo);
-
-		System.out.println("Los datos indentificativos:" + tren.toString());
-
-		tren.trenLleno(tren.getAsientosOcupados());
-
-		tren.demasiadoViejo(tren.getAniosActivo());
-	}
-
-}
+		
+		if ( t1.estaLleno() ) {
+			System.out.println("Esta petadu el tren");
+		}else {
+			System.out.println("Todavia entramos mas");
+		}
+		
+		if ( t1.esViejo() ) {
+			System.out.println("Juvilate");
+		}else {
+			System.out.println("Sigue currando");
+		}
+		
+	}}
