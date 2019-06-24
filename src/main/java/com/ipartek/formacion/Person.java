@@ -1,6 +1,8 @@
 package com.ipartek.formacion;
 
-public class Person  {
+import java.io.Serializable;
+
+public class Person  implements Serializable{
 
 	// atributos privados para encapsular
 	private int id;

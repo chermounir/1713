@@ -5,11 +5,34 @@ import java.util.List;
 
 import com.ipartek.formacion.Alumno;
 
-public class DAOAlumnoArrayList implements IPersistible<Alumno> {
+public class DAOAlumnoArrayList implements IPersistible<Alumno>, ISingleton<DAOAlumnoArrayList> {
 
+	private static DAOAlumnoArrayList INSTANCE;
+	
 	private ArrayList<Alumno> lista;
-
-	public DAOAlumnoArrayList() {
+	
+	@Override
+	public DAOAlumnoArrayList getSingleton() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+/**
+ * encargado de devolver solo 1 objeto, patron singleton
+ * @return
+ */
+	public static DAOAlumnoArrayList getInstance(){
+		
+	 if (INSTANCE == null) {
+		 INSTANCE = new DAOAlumnoArrayList();
+		
+	}
+	 return INSTANCE;
+	}
+	
+	/**
+	 * privado para que nadie pueda crear objetos
+	 */
+	private DAOAlumnoArrayList() {
 		super();
 		lista = new ArrayList<Alumno>();
 		lista.add(new Alumno(12, "Antton"));
@@ -49,7 +72,8 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
 
 	@Override
 	public boolean delete(int id) {
-
+        //Alumno a = getById(id);
+       // return lista.remove(a);
 		boolean resul = false;
 
 		for (Alumno a : lista) {
@@ -88,5 +112,7 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
 		return resul;
 
 	}
+
+	
 
 }
