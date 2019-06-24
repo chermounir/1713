@@ -62,9 +62,8 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno>, ISingleton<DAOA
 	@Override
 	public boolean insert(Alumno pojo) {
 		boolean resul = false;
-
-		if (lista.add(pojo)) {
-			resul = true;
+		if ( pojo != null ) {
+			resul = lista.add(pojo);
 		}
 		return resul;
 
@@ -72,46 +71,33 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno>, ISingleton<DAOA
 
 	@Override
 	public boolean delete(int id) {
-        //Alumno a = getById(id);
-       // return lista.remove(a);
-		boolean resul = false;
 
-		for (Alumno a : lista) {
-
-			if (a.getId() == id) {
-
-				lista.remove(a);
-				resul = true;
-
-				break;
-			}
-		}
-		return resul;
+		Alumno a = getById(id);	
+		
+		return lista.remove(a);
 
 	}
 
 	@Override
 	public boolean update(Alumno pojo) {
-
-		boolean resul = false;
-		int cont = 0;
-
-		for (Alumno a : lista) {
-
-			if (a.getId() == pojo.getId()) {
-
-				lista.remove(a);
-
-				lista.add(cont, pojo);
-				resul = true;
-
-				break;
+		boolean resul = false; 
+		
+		if ( pojo != null ) {
+		
+			for (Alumno a: lista) {
+				
+				if ( a.getId() == pojo.getId() ) {
+					//modificar
+					int pos = lista.indexOf(a);
+					lista.set( pos , pojo);
+					resul = true;
+					break;
+				}
 			}
-			cont++;
-		}
-		return resul;
-
-	}
+		}	
+		
+		
+		return resul;}
 
 	
 

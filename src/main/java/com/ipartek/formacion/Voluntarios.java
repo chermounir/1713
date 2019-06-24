@@ -25,11 +25,7 @@ public class Voluntarios {
 
 		while (bool) {
 			pintarMenu();
-			try {
-				numero = Integer.parseInt(sc.nextLine());
-			} catch (Exception e) {
-				System.out.println("*** opcion no posible***");
-			}
+			
 
 			switch (numero) {
 			case OPCION_SALIR:
@@ -57,7 +53,7 @@ public class Voluntarios {
 
 	}
 
-	static void pintarMenu() {
+	private static void pintarMenu() {
 		System.out.println("	----------------------------------");
 		System.out.println("	0) Salir");
 		System.out.println("	1) Listar Alumnos");
@@ -66,19 +62,27 @@ public class Voluntarios {
 		System.out.println("	4) Buscar voluntario");
 		System.out.println("	5) Cambiar datos de un Alumno");
 		System.out.println("	----------------------------------");
+		try {
+			numero = Integer.parseInt(sc.nextLine());
+		} catch (Exception e) {
+			System.out.println("*** opcion no posible***");
+			pintarMenu();
+		}
 	}
 
-	static void listarAlumnos() {
+	private static void listarAlumnos() {
+		System.out.printf("%3s %15s %2s \n", "id", "nombre", "num.voluntario");
 
 		List<Alumno> alumnos = dao.getAll();
 		for (Alumno alumno : alumnos) {
-			System.out.println("id: " + alumno.getId() + " ,nombre: " + alumno.getNombre());
+			
+			System.out.printf("%3s %15s %2s \n", alumno.getId(), alumno.getNombre(), alumno.getNumVecesLeer());
 
 		}
 
 	}
 
-	static void crearAlumno() {
+	private static void crearAlumno() {
 		try {
 
 			// pedir datos por consola
@@ -120,7 +124,7 @@ public class Voluntarios {
 		}
 	}
 
-	static void eliminarAlumno() {
+	private static void eliminarAlumno() {
 		try {
 
 			System.out.println("introduce el id del alumno ");
@@ -137,7 +141,7 @@ public class Voluntarios {
 
 	}
 
-	static void buscarVoluntario() {
+	private static void buscarVoluntario() {
 		listarAlumnos();
 		List<Alumno> alumnos = dao.getAll();
 
@@ -146,11 +150,11 @@ public class Voluntarios {
 		System.out.println("El voluntario es : " + alumnos.get(numero).getNombre());
 
 		int num = alumnos.get(numero).getNumVecesLeer();
-		alumnos.get(numero).setNumVecesLeer(num);
+		alumnos.get(numero).setNumVecesLeer(num + 1);
 
 	}
 
-	static void cambiarDatosAlumno() {
+	private static void cambiarDatosAlumno() {
 		try {
 
 			// pedir datos por consola
