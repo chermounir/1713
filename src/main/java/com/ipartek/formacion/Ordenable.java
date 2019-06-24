@@ -6,5 +6,6 @@ public interface Ordenable {
 	 * 
 	 * @return
 	 */
+	
 	int getValor();
 }
