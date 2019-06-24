@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.ipartek.formacion.Alumno;
-import com.ipartek.formacion.modelo.DAOAlumnoArrayList;
+import com.ipartek.formacion.modelo.DAOAlumnoSeriablizable;
 
 public class Voluntarios {
 	static boolean bool = true;
@@ -16,7 +16,8 @@ public class Voluntarios {
 	static final int OPCION_BUSCAR = 4;
 	static final int OPCION_CAMBIAR = 5;
 
-	static DAOAlumnoArrayList dao = DAOAlumnoArrayList.getInstance();
+	//static DAOAlumnoSeriablizable dao = DAOAlumnoSeriablizable.getInstance();
+	static DAOAlumnoSeriablizable dao = DAOAlumnoSeriablizable.getInstance();
 
 	static Scanner sc = new Scanner(System.in);
 	static int numero;
@@ -30,6 +31,7 @@ public class Voluntarios {
 			switch (numero) {
 			case OPCION_SALIR:
 				bool = false;
+				System.out.println("Agur");
 				break;
 			// listar alumnos
 			case OPCION_LISTAR:

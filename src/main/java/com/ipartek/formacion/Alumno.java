@@ -1,7 +1,11 @@
 package com.ipartek.formacion;
 
-public class Alumno extends Person implements Comparable<Alumno>{
+import java.io.Serializable;
 
+public class Alumno extends Person implements Comparable<Alumno>, Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	private int numVecesLeer;
 
 	

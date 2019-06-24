@@ -1,18 +1,24 @@
 package com.ipartek.formacion.modelo;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.ipartek.formacion.Alumno;
 
-public class DAOAlumnoArrayList implements IPersistible<Alumno>, ISingleton<DAOAlumnoArrayList> {
+public class DAOAlumnoSeriablizable implements IPersistible<Alumno>, ISingleton<DAOAlumnoSeriablizable> {
 
-	private static DAOAlumnoArrayList INSTANCE;
+	private static final String FILE_NAME = "alumnos.dat";
+	
+	private static DAOAlumnoSeriablizable INSTANCE;
 	
 	private ArrayList<Alumno> lista;
 	
 	@Override
-	public DAOAlumnoArrayList getSingleton() {
+	public DAOAlumnoSeriablizable getSingleton() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -20,10 +26,10 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno>, ISingleton<DAOA
  * encargado de devolver solo 1 objeto, patron singleton
  * @return
  */
-	public static DAOAlumnoArrayList getInstance(){
+	public static DAOAlumnoSeriablizable getInstance(){
 		
 	 if (INSTANCE == null) {
-		 INSTANCE = new DAOAlumnoArrayList();
+		 INSTANCE = new DAOAlumnoSeriablizable();
 		
 	}
 	 return INSTANCE;
@@ -32,13 +38,9 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno>, ISingleton<DAOA
 	/**
 	 * privado para que nadie pueda crear objetos
 	 */
-	private DAOAlumnoArrayList() {
+	private DAOAlumnoSeriablizable() {
 		super();
-		lista = new ArrayList<Alumno>();
-		lista.add(new Alumno(12, "Antton"));
-		lista.add(new Alumno(45, "MAriJose"));
-		lista.add(new Alumno(2, "Pepe"));
-		lista.add(new Alumno(44, "Txeila"));
+		desSeralizarLista();
 	}
 
 	@Override
@@ -99,6 +101,27 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno>, ISingleton<DAOA
 		
 		return resul;}
 
+	private void serializarLista() {
+		
+		try( ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME)) ){
+			oos.writeObject(lista);
+			oos.flush();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	private void desSeralizarLista() {
+		
+		try( ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME)) ){	
+			
+			lista =  (ArrayList<Alumno>) ois.readObject();
+			
+		}catch (Exception e) {
+			// e.printStackTrace();   EOF
+		}
+	}
 	
 
 }

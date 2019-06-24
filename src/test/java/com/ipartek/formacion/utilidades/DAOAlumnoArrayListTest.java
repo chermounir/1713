@@ -14,11 +14,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.ipartek.formacion.Alumno;
-import com.ipartek.formacion.modelo.DAOAlumnoArrayList;
+import com.ipartek.formacion.modelo.DAOAlumnoSeriablizable;
 
 public class DAOAlumnoArrayListTest {
 	
-	static DAOAlumnoArrayList dao;
+	static DAOAlumnoSeriablizable dao;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -30,7 +30,7 @@ public class DAOAlumnoArrayListTest {
 
 	@Before
 	public void setUp() throws Exception {
-		dao = DAOAlumnoArrayList.getInstance();
+		dao = DAOAlumnoSeriablizable.getInstance();
 	}
 
 	@After
