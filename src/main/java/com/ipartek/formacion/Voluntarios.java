@@ -16,7 +16,7 @@ public class Voluntarios {
 	static final int OPCION_BUSCAR = 4;
 	static final int OPCION_CAMBIAR = 5;
 
-	//static DAOAlumnoSeriablizable dao = DAOAlumnoSeriablizable.getInstance();
+	// static DAOAlumnoSeriablizable dao = DAOAlumnoSeriablizable.getInstance();
 	static DAOAlumnoSeriablizable dao = DAOAlumnoSeriablizable.getInstance();
 
 	static Scanner sc = new Scanner(System.in);
@@ -26,7 +26,6 @@ public class Voluntarios {
 
 		while (bool) {
 			pintarMenu();
-			
 
 			switch (numero) {
 			case OPCION_SALIR:
@@ -77,7 +76,7 @@ public class Voluntarios {
 
 		List<Alumno> alumnos = dao.getAll();
 		for (Alumno alumno : alumnos) {
-			
+
 			System.out.printf("%3s %15s %2s \n", alumno.getId(), alumno.getNombre(), alumno.getNumVecesLeer());
 
 		}

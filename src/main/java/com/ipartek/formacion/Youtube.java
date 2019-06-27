@@ -3,7 +3,7 @@ package com.ipartek.formacion;
 public class Youtube {
 
 	public static final int LONGITUD_CODIGO = 11;
-	public static final int LONGITUD_MIN_TITULO = 2;
+	public static final int LONGITUD_MIN_TITULO = 3;
 	public static final int LONGITUD_MAX_TITULO = 150;
 	public static final String URL = "https://www.youtube.com/watch?v=";
 
@@ -28,7 +28,7 @@ public class Youtube {
 	}
 
 	/**
-	 * cambia tetulo
+	 * titulo
 	 * 
 	 * @param titulo Strin nuevo titulo
 	 * @throws Exception si titulo null || >= LONGITUD_MIN_TITULO || <=
